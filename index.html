@@ -2,158 +2,197 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIMLOCK MODE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>App Hỗ Trợ Kéo Tâm Full Đỏ Ob52</title>
+
 <style>
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:radial-gradient(circle at top,#300000,#000);
-  color:#fff;
-  overflow:hidden;
+    background:#000;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:15px;
 }
-canvas{position:fixed;inset:0;z-index:0;}
+.app{
+    max-width:420px;
+    margin:auto;
+}
+h1{
+    text-align:center;
+    color:#ffb870;
+    margin-bottom:20px;
+}
 .box{
-  position:relative;z-index:2;
-  width:90%;max-width:360px;
-  margin:60px auto;
-  background:rgba(0,0,0,.65);
-  border:2px solid #ff0000;
-  box-shadow:0 0 25px #ff0000;
-  border-radius:18px;
-  padding:20px;
+    border:2px solid #00b7ff;
+    border-radius:20px;
+    padding:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 18px #00b7ff;
 }
-h1{text-align:center;color:#ff4444;text-shadow:0 0 12px red;}
-input{
-  width:100%;padding:12px;border-radius:10px;border:none;
-  margin:10px 0;font-size:16px;
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0;
 }
 .btn{
-  width:100%;padding:12px;border:none;border-radius:12px;
-  background:linear-gradient(90deg,#ff0000,#990000);
-  color:white;font-size:18px;
-  box-shadow:0 0 15px red;
+    background:#00aaff;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+    border:none;
 }
-.item{
-  display:flex;justify-content:space-between;align-items:center;
-  margin:12px 0;padding-bottom:8px;border-bottom:1px dashed #ff4444;
+
+/* INPUT */
+input{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    background:#000;
+    color:#fff;
+    border:1px solid #00b7ff;
+    border-radius:10px;
 }
-.cmd{color:#ff7777;font-family:monospace;font-size:13px;margin-left:40px;display:none;}
-.switch{position:relative;width:50px;height:26px}
-.switch input{display:none}
+
+/* SWITCH */
+.switch{
+    position:relative;
+    width:48px;
+    height:26px;
+}
+.switch input{display:none;}
 .slider{
-  position:absolute;inset:0;background:#333;border-radius:20px;
+    position:absolute;
+    inset:0;
+    background:#444;
+    border-radius:30px;
+    transition:.3s;
 }
 .slider:before{
-  content:"";position:absolute;width:20px;height:20px;
-  background:white;border-radius:50%;top:3px;left:3px;
-  transition:.3s;
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    left:3px;
+    bottom:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:.3s;
 }
-input:checked + .slider{background:#ff0000}
-input:checked + .slider:before{transform:translateX(24px)}
-.footer{text-align:center;font-size:12px;color:#ff7777;margin-top:10px;}
-.remain{text-align:center;color:#ffaaaa;margin-bottom:10px;}
+input:checked + .slider{
+    background:#2aff2a;
+}
+input:checked + .slider:before{
+    transform:translateX(22px);
+}
+
+/* LOADING */
+.loading{
+    width:60px;
+    height:60px;
+    border:6px solid #222;
+    border-top:6px solid #2aff2a;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:20px auto;
+}
+@keyframes spin{100%{transform:rotate(360deg);}}
+
+.hidden{display:none}
+.green{color:#2aff2a}
 </style>
 </head>
+
 <body>
+<div class="app">
 
-<canvas id="dust"></canvas>
+<h1>App Hỗ Trợ Kéo Tâm Full Đỏ Ob52</h1>
 
-<div class="box" id="login">
-<h1>WELCOME MENU OB52 · KEY LOGIN</h1>
-<input id="keyInput" placeholder="Enter your key...">
-<button class="btn" onclick="login()">LOGIN</button>
-<div class="remain" id="remainInfo"></div>
+<div class="box">
+    <div class="row">Zalo <a class="btn" href="https://zalo.me/0972552133" target="_blank">Liên hệ</a></div>
+    <div class="row">TikTok <a class="btn" href="https://www.tiktok.com/@hacve02" target="_blank">Liên hệ</a></div>
+    <div class="row">YouTube <a class="btn" href="https://youtube.com/@hacve1002" target="_blank">Liên hệ</a></div>
 </div>
 
-<div class="box" id="panel" style="display:none;">
-<h1>MENU FULLY FUNCTIONAL</h1>
+<div class="box">
+<h3>Vui Lòng Nhập Thông Tin Duới Đây</h3>
+<input id="device" placeholder="Nhập tên máy đang dùng (VD: iPhone 11)">
+<input id="sens" placeholder="Nhập độ nhạy đang dùng (VD: 190-185-175-150-125-170)">
+<input id="size" placeholder="Kích thước nút bắn đang dùng (VD : 40%)">
+</div>
 
-<div class="item">🎯 𝐍𝐡𝐞̣ 𝐓𝐚̂𝐦
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c1')"><span class="slider"></span>
-</label></div>
-<div id="c1" class="cmd">cmd&gt; smooth=on; accel=low;</div>
+<div class="box">
+<h3>Menu Full Chức Năng Vip Ob52</h3>
 
-<div class="item">🚀 𝐀𝐢𝐦𝐁𝐨𝐭
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c2')"><span class="slider"></span>
-</label></div>
-<div id="c2" class="cmd">cmd&gt; lock(region=head); sticky=true;</div>
+<div class="row">Nhẹ Tâm 👑
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-<div class="item">💀 𝐅𝐢𝐱 𝐑𝐮𝐧𝐠
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c3')"><span class="slider"></span>
-</label></div>
-<div id="c3" class="cmd">cmd&gt; stabilize(level=high);</div>
+<div class="row">Fix Rung ⚡️
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-<div class="item">⚡️ 𝐀𝐢𝐦𝐋𝐨𝐜𝐤
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c4')"><span class="slider"></span>
-</label></div>
-<div id="c4" class="cmd">cmd&gt; overshoot=off;</div>
+<div class="row">Giảm Lố 🚀
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-<div class="item">⚙️ 𝐁𝐨𝐨𝐬𝐭 𝐅𝐏𝐒
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c5')"><span class="slider"></span>
-</label></div>
-<div id="c5" class="cmd">cmd&gt; fps_boost=on; vsync=off;</div>
+<div class="row">AimBot 🎭
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-<div class="item">📲 𝐅𝐢𝐱 𝐋𝐚𝐠 𝐃𝐞𝐯𝐢𝐜𝐞
-<label class="switch">
-<input type="checkbox" onchange="toggle(this,'c6')"><span class="slider"></span>
-</label></div>
-<div id="c6" class="cmd">cmd&gt; cache_clean(); threads=opt;</div>
+<div class="row">AimLock 🎯
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
 
-<div class="footer">Developer: HACVE</div>
+<div class="row">Tăng Nhạy ⚙️
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+
+<div class="row">Tối Ưu Máy 📲
+<label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+</div>
+
+<div class="box">
+<button class="btn" onclick="runAI()">>>> KÍCH HOẠT AI PHÂN TÍCH <<<</button>
+
+<div id="loading" class="loading hidden"></div>
+
+<div id="result" class="hidden">
+<p class="green">• Kết Quả Phân Tích AI</p>
+<p id="r_device"></p>
+<p id="r_sens"></p>
+<p id="r_size"></p>
+
+<hr>
+
+<p class="green">• Lời Khuyên AI Cho Thiết Bị</p>
+<p>Đồ Họa: Máy Mạnh ( Cao ) - Máy Yếu ( Thấp Thường )</p>
+<p>FPS: Ưu Tiên Cao ( Lưu Ý : Nếu Rung Tâm Thì Chỉnh Thường )</p>
+<p>Đổ Bóng: Tắt</p>
+<p>Chế Độ Hiệu Năng: Chỉnh Bật Để Giảm Giật Lag Cải Thiện Tốc Độ Khung Hình Và Tiết Kiệm Pin</p>
+<p>Độ Rung: Chỉnh Đóng Tất Cả</p>
+
+
+
+<p style="text-align:center">© Coppyright Hắc Vê</p>
+</div>
+</div>
+
 </div>
 
 <script>
-const DEFAULT_KEYS={
-"HACVE-1002":100,
-"HACVE-0307":100,
-"HACVE-2001":100
-};
+function runAI(){
+    let d=document.getElementById("device").value;
+    let s=document.getElementById("sens").value;
+    let z=document.getElementById("size").value;
 
-let DB=JSON.parse(localStorage.getItem("hacve_keys"))||DEFAULT_KEYS;
-function save(){localStorage.setItem("hacve_keys",JSON.stringify(DB));}
+    document.getElementById("loading").classList.remove("hidden");
+    document.getElementById("result").classList.add("hidden");
 
-function login(){
-let k=document.getElementById("keyInput").value.trim();
-if(!DB[k] && DB[k]!==0) return alert("Key không tồn tại!");
-if(DB[k]<=0) return alert("Key đã hết lượt!");
-DB[k]--;save();
-document.getElementById("login").style.display="none";
-document.getElementById("panel").style.display="block";
-}
+    setTimeout(()=>{
+        document.getElementById("loading").classList.add("hidden");
+        document.getElementById("result").classList.remove("hidden");
 
-document.getElementById("keyInput").addEventListener("input",()=>{
-let k=keyInput.value.trim();
-if(DB[k] || DB[k]===0){
-remainInfo.innerText="Còn lại: "+DB[k]+" lượt";
-}else remainInfo.innerText="";
-});
-
-/* Dust particles */
-const c=document.getElementById("dust"),ctx=c.getContext("2d");
-let w,h,arr=[];
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
-window.onresize=resize;resize();
-for(let i=0;i<80;i++)arr.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,s:Math.random()+0.3});
-function draw(){
-ctx.clearRect(0,0,w,h);
-arr.forEach(p=>{
-ctx.fillStyle="rgba(255,255,255,0.6)";
-ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
-p.y+=p.s;p.x+=Math.sin(p.y*0.01);
-if(p.y>h){p.y=0;p.x=Math.random()*w;}
-});
-requestAnimationFrame(draw);
-}
-draw();
-
-function toggle(el,id){
-document.getElementById(id).style.display=el.checked?"block":"none";
+        document.getElementById("r_device").innerText="Thiết bị: "+d;
+        document.getElementById("r_sens").innerText="Độ nhạy: "+s;
+        document.getElementById("r_size").innerText="Kích cỡ nút bắn: "+z+"%";
+    },2000);
 }
 </script>
 
